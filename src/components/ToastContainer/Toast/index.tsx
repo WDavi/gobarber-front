@@ -27,7 +27,7 @@ const Toast: React.FC<ToastProps> = ({ toast, style }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       handleRemoveToast(toast.id);
-    }, 3000);
+    }, 4000);
 
     return () => {
       clearTimeout(timer);
@@ -36,7 +36,7 @@ const Toast: React.FC<ToastProps> = ({ toast, style }) => {
 
   return (
     <Container
-      hasDescription={!!toast.description}
+      hasDescription={Number(!!toast.description)}
       type={toast.type}
       style={style}
     >

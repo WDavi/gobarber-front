@@ -66,7 +66,7 @@ const ForgotPassword: React.FC = () => {
           type: 'error',
           title: 'Erro na recuperação de senha',
           description:
-            'Ocorreu um erro ao tentar recuperar a senha, cheque as credenciais.',
+            'Ocorreu um erro ao tentar recuperar a senha, cheque as credenciais ou verifique se o e-mail está cadastrado.',
         });
       } finally {
         setLoading(false);
