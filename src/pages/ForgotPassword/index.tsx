@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useState } from 'react';
 import { FiLogIn, FiMail } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
@@ -12,6 +12,7 @@ import logoImg from '../../assets/logo.svg';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import api from '../../services/api';
 
 import { Container, Content, AnimationContainer, Background } from './styles';
 
@@ -20,6 +21,7 @@ interface ForgotPasswordFormData {
 }
 
 const ForgotPassword: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const formRef = useRef<FormHandles>(null);
 
   const { addToast } = useToast();
@@ -27,6 +29,8 @@ const ForgotPassword: React.FC = () => {
   const handleSubmit = useCallback(
     async (data: ForgotPasswordFormData) => {
       try {
+        setLoading(true);
+
         const schema = Yup.object().shape({
           email: Yup.string()
             .required('E-mail obrigatório')
@@ -38,6 +42,17 @@ const ForgotPassword: React.FC = () => {
         });
 
         formRef.current?.setErrors({});
+
+        await api.post('/password/forgot', {
+          email: data.email,
+        });
+
+        addToast({
+          type: 'success',
+          title: 'Sucesso',
+          description:
+            'Um e-mail contendo as instruções de como recuperar a senha será enviado para você',
+        });
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
@@ -53,6 +68,8 @@ const ForgotPassword: React.FC = () => {
           description:
             'Ocorreu um erro ao tentar recuperar a senha, cheque as credenciais.',
         });
+      } finally {
+        setLoading(false);
       }
     },
     [addToast],
@@ -68,7 +85,9 @@ const ForgotPassword: React.FC = () => {
             <h1>Recuperar Senha</h1>
             <Input icon={FiMail} name="email" placeholder="E-mail" />
 
-            <Button type="submit">Enviar</Button>
+            <Button loading={loading} type="submit">
+              Enviar
+            </Button>
           </Form>
 
           <Link to="/">
