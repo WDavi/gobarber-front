@@ -7,7 +7,6 @@ import ptBR from 'date-fns/locale/pt-BR';
 import 'react-day-picker/lib/style.css';
 
 import { parseISO } from 'date-fns/esm';
-import { Link } from 'react-router-dom';
 import {
   Container,
   Header,
