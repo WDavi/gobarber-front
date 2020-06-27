@@ -6,6 +6,7 @@ interface ContainerProps {
   hasFocus: boolean;
   isFilled: boolean;
   hasError: boolean;
+  id?: string;
 }
 
 export const Container = styled.div<ContainerProps>`

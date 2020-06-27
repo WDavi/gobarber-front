@@ -7,6 +7,7 @@ import ptBR from 'date-fns/locale/pt-BR';
 import 'react-day-picker/lib/style.css';
 
 import { parseISO } from 'date-fns/esm';
+import { Link } from 'react-router-dom';
 import {
   Container,
   Header,
@@ -155,7 +156,7 @@ const DashBoard: React.FC = () => {
         <HeaderContent>
           <img src={logoImg} alt="GoBarber" />
 
-          <Profile>
+          <Profile to="/profile">
             <img src={user.avatar_url} alt={`Avatar de ${user.name}`} />
             <div>
               <strong>Bem Vindo.</strong>
