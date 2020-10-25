@@ -1,7 +1,6 @@
 # Front-end of GoBarber
 > This repository contais the frot-end part of the GoBarber App, it helps people make appointmets with their barber.
 
-[![Build Status][travis-image]][travis-url]
 
 
 This API can receive requests to create users, change an user's avatar and create appointmets.
