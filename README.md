@@ -39,7 +39,7 @@ the back-end is running correctly
 
 ## Made by
 
-Davi Wendt – contato@daviwendt.com
+Davi Wendt
 
 
 ## Contributing
